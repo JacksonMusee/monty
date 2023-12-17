@@ -75,7 +75,7 @@ void execute(char *ln, int lnum)
 		}
 		else
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd );
+			fprintf(stderr, "L%d: usage: push integer\n", lnum);
 			exit(EXIT_FAILURE);
 		}
 	}
