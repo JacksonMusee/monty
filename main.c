@@ -61,14 +61,16 @@ void execute(char *ln, int lnum)
 {
 	char *cmd;
 	int arg;
+	char *str_arg;
 
 	cmd = strtok(ln, " \n");
 
 	if (strcmp(cmd, "push") == 0)
 	{
-		arg = atoi(strtok(NULL, " "));
-		if (arg)
+		str_arg = strtok(NULL, " \n");
+		if (str_arg)
 		{
+			arg = atoi(str_arg);
 			push(arg);
 		}
 		else
