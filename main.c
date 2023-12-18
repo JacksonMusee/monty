@@ -89,4 +89,9 @@ void execute(char *ln, int lnum)
 	{
 		pall(stack_top);
 	}
+	else
+	{
+		fprintf("L%d: unknown instruction %s\n",lnum, cmd);
+		exit(EXIT_FAILURE);
+	}
 }
