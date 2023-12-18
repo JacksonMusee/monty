@@ -44,7 +44,7 @@ extern stack_t *stack_top;
 
 /* Functon declarations */
 int main(int argc, char **argv);
-void push(int arg);
+void push(int arg, stack_t *stack_top);
 void pall(stack_t *stack_top);
 void readline(FILE *stream);
 void execute(char *ln, int lnum);
