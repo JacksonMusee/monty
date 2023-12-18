@@ -6,9 +6,10 @@
  *@arg: Value of the new element/item to be pushed
  *@stack_top: Current topmost element of the stack
  *
+ * Return: pointer to updatd stack
  */
 
-void push(int arg, stack_t *stack_top)
+stack_t *push(int arg, stack_t *stack_top)
 {
 	stack_t *newnod = malloc(sizeof(stack_t));
 
@@ -22,6 +23,8 @@ void push(int arg, stack_t *stack_top)
 	newnod->prev = stack_top;
 	newnod->next = NULL;
 	stack_top = newnod;
+
+	return (stack_top);
 }
 
 /**

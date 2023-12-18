@@ -44,10 +44,10 @@ extern stack_t *stack_top;
 
 /* Functon declarations */
 int main(int argc, char **argv);
-void push(int arg, stack_t *stack_top);
+stack_t *push(int arg, stack_t *stack_top);
 void pall(stack_t *stack_top);
 void readline(FILE *stream);
-void execute(char *ln, int lnum);
+stack_t *execute(char *ln, int lnum, stack_t *stack_top);
 /* Functon declaraton END */
 
 #endif /*END MONTY_H*/

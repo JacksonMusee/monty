@@ -28,6 +28,8 @@ int main(int argc, char **argv)
 
 	readline(stream);
 
+	fclose(stream);
+
 	return (0);
 }
 
@@ -42,6 +44,7 @@ void readline(FILE *stream)
 	char *line;
 	size_t len = 256;
 	int lnumm = 0;
+	stack_t *stack_top = NULL;
 
 	line = malloc(sizeof(len));
 	if (line == NULL)
@@ -50,8 +53,10 @@ void readline(FILE *stream)
 	while ((fgets(line, len, stream)) != NULL)
 	{
 		lnumm++;
-		execute(line, lnumm);
+		stack_top = execute(line, lnumm, stack_top);
 	}
+
+	free(line);
 }
 
 /**
@@ -59,15 +64,16 @@ void readline(FILE *stream)
  *
  *@ln: Ponter to the command/opcode
  *@lnum: Line count
+ *@stack_top: Pointer to stack
  *
+ * Return: Pointer to stack
  */
 
-void execute(char *ln, int lnum)
+stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 {
 	char *cmd;
 	int arg;
 	char *str_arg;
-	stack_t *stack_top = NULL;
 
 	cmd = strtok(ln, " \n");
 
@@ -77,11 +83,12 @@ void execute(char *ln, int lnum)
 		if (str_arg)
 		{
 			arg = atoi(str_arg);
-			push(arg, stack_top);
+			stack_top = push(arg, stack_top);
 		}
 		else
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", lnum);
+			free(ln);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -92,6 +99,9 @@ void execute(char *ln, int lnum)
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd);
+		free(ln);
 		exit(EXIT_FAILURE);
 	}
+
+	return (stack_top);
 }
