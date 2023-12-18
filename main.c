@@ -91,7 +91,7 @@ void execute(char *ln, int lnum)
 	}
 	else
 	{
-		fprintf("L%d: unknown instruction %s\n",lnum, cmd);
+		fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd);
 		exit(EXIT_FAILURE);
 	}
 }
