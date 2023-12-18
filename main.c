@@ -99,6 +99,8 @@ stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 	{
 		stack_top = add(stack_top, lnum);
 	}
+	else if (strcmp(cmd, "nop") == 0)
+	{}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd);
