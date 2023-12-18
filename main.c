@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		perror("USAGE: monty file\n");
+		printf(stderr, "%s file", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
