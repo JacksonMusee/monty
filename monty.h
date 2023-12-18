@@ -38,13 +38,11 @@ typedef struct instruction_s
 } instruction_t;
 /* STRUCTURES END */
 
-/* GLOBAL VARIABLES */
-extern stack_t *stack_top;
-/*GLOBAL VARIABLES END */
+
 
 /* Functon declarations */
 int main(int argc, char **argv);
-stack_t *push(int arg, stack_t *stack_top);
+stack_t *push(stack_t *stack_top, char *ln, int lnum);
 void pall(stack_t *stack_top);
 void readline(FILE *stream);
 stack_t *execute(char *ln, int lnum, stack_t *stack_top);

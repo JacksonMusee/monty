@@ -3,26 +3,49 @@
 /**
  *push -Add an item to the stack
  *
- *@arg: Value of the new element/item to be pushed
  *@stack_top: Current topmost element of the stack
+ *@ln: Point to read line
+ *@lnum: Line number as it in the file
  *
  * Return: pointer to updatd stack
  */
 
-stack_t *push(int arg, stack_t *stack_top)
+stack_t *push(stack_t *stack_top, char *ln, int lnum)
 {
-	stack_t *newnod = malloc(sizeof(stack_t));
+	char *str_arg;
+	int arg;
 
-	if (newnod == NULL)
+	str_arg = strtok(NULL, " \n");
+	if (str_arg)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		arg = atoi(str_arg);
+		if ((strcmp(str_arg, "0") != 0) && arg == 0)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", lnum);
+			free(ln);
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			stack_t *newnod = malloc(sizeof(stack_t));
+
+			if (newnod == NULL)
+			{
+				fprintf(stderr, "Error: malloc failed");
+				exit(EXIT_FAILURE);
+			}
+			newnod->n = arg;
+			newnod->prev = stack_top;
+			newnod->next = NULL;
+			stack_top = newnod;
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", lnum);
+		free(ln);
 		exit(EXIT_FAILURE);
 	}
-
-	newnod->n = arg;
-	newnod->prev = stack_top;
-	newnod->next = NULL;
-	stack_top = newnod;
 
 	return (stack_top);
 }

@@ -72,31 +72,12 @@ void readline(FILE *stream)
 stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 {
 	char *cmd;
-	int arg;
-	char *str_arg;
 
 	cmd = strtok(ln, " \n");
 
 	if (strcmp(cmd, "push") == 0)
 	{
-		str_arg = strtok(NULL, " \n");
-		if (str_arg)
-		{
-			arg = atoi(str_arg);
-			if ((strcmp(str_arg, "0") != 0) && arg == 0)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", lnum);
-				free(ln);
-				exit(EXIT_FAILURE);
-			}
-			stack_top = push(arg, stack_top);
-		}
-		else
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", lnum);
-			free(ln);
-			exit(EXIT_FAILURE);
-		}
+		stack_top = push(stack_top, ln, lnum);
 	}
 	else if (strcmp(cmd, "pall") == 0)
 	{
