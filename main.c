@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf(stderr, "%s file", argv[0]);
+		fprintf(stderr, "%s file", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
