@@ -83,6 +83,10 @@ stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 	{
 		pall(stack_top);
 	}
+	else if (strcmp(cmd, "pint") == 0)
+	{
+		pint(stack_top, lnum);
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd);

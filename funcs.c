@@ -67,3 +67,21 @@ void pall(stack_t *stack_top)
 		node = node->prev;
 	}
 }
+
+/**
+ *pint - prints the value at the top of the stack
+ *
+ *@stack_top - Element at the top of stack
+ *@lnum: Line number of the opcode
+ *
+ */
+void pint(stack_t *stack_top, int lnum)
+{
+	if (stack_top == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", lnum);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%d\n", stack_top->n);
+}
