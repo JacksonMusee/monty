@@ -85,3 +85,30 @@ void pint(stack_t *stack_top, int lnum)
 
 	printf("%d\n", stack_top->n);
 }
+
+/**
+ *pop - Delete item at the top of stack
+ *
+ *@stack_top: Point to stack top
+ *@lnum: Line number of opcode
+ *
+ *Return: Point to new stack top
+ */
+
+stack_t *pop(stack_t *stack_top, int lnum)
+{
+	stack_t *temp;
+
+	if(stack_top == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", lnum);
+		exit(EXIT_FAILURE);
+	}
+	temp = stack_top;
+	stack_top = temp->prev;
+
+	free(temp);
+
+	return (stack_top);
+
+}

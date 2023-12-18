@@ -47,6 +47,7 @@ void pall(stack_t *stack_top);
 void readline(FILE *stream);
 stack_t *execute(char *ln, int lnum, stack_t *stack_top);
 void pint(stack_t *stack_top, int lnum);
+stack_t *pop(stack_t *stack_top, int lnum);
 /* Functon declaraton END */
 
 #endif /*END MONTY_H*/
