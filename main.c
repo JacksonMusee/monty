@@ -91,6 +91,10 @@ stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 	{
 		stack_top = pop(stack_top, lnum);
 	}
+	else if (strcmp(cmd, "swap") == 0)
+	{
+		stack_top = swap(stack_top, lnum);
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", lnum, cmd);

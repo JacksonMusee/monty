@@ -71,7 +71,7 @@ void pall(stack_t *stack_top)
 /**
  *pint - prints the value at the top of the stack
  *
- *@stack_top - Element at the top of stack
+ *@stack_top: Element at the top of stack
  *@lnum: Line number of the opcode
  *
  */
@@ -99,7 +99,7 @@ stack_t *pop(stack_t *stack_top, int lnum)
 {
 	stack_t *temp;
 
-	if(stack_top == NULL)
+	if (stack_top == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", lnum);
 		exit(EXIT_FAILURE);
@@ -111,4 +111,35 @@ stack_t *pop(stack_t *stack_top, int lnum)
 
 	return (stack_top);
 
+}
+
+/**
+ *swap - swaps the top two elements of the stack
+ *
+ *@stack_top: Top of stack
+ *@lnum: Opcode line number
+ *
+ * Return: New stack_top
+ */
+
+stack_t *swap(stack_t *stack_top, int lnum)
+{
+	stack_t *old_top;
+	stack_t *new_top;
+
+	if (stack_top == NULL || stack_top->prev == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", lnum);
+		exit(EXIT_FAILURE);
+	}
+
+	old_top = stack_top;
+	new_top = stack_top->prev;
+	old_top->prev = new_top->prev;
+	old_top->next = new_top;
+	new_top->prev = old_top;
+	new_top->next = NULL;
+	stack_top = new_top;
+
+	return (stack_top);
 }
