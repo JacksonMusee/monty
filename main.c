@@ -83,6 +83,12 @@ stack_t *execute(char *ln, int lnum, stack_t *stack_top)
 		if (str_arg)
 		{
 			arg = atoi(str_arg);
+			if ((strcmp(str_arg, "0") != 0) && arg == 0)
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", lnum);
+				free(ln);
+				exit(EXIT_FAILURE);
+			}
 			stack_top = push(arg, stack_top);
 		}
 		else
